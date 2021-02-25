@@ -3,7 +3,6 @@
     <div class="footer-body">页脚</div>
   </div>
 </template>
-https://github.com/DertraumDong/hbp-project.git
 <script>
 export default {
   name: "Footer"
