@@ -28,10 +28,10 @@ body{
   margin: 0px;
 }
 .app-body{
+  background-color: #f8f9fa!important;
   min-height: 600px;
 }
 .app-footer{
-  border-top:1px solid #909399;
   padding: 10px 0px 10px 0px;
 }
 
