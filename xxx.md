@@ -11,3 +11,10 @@
 "plugins": ["transform-vue-jsx", "transform-runtime"]
 }
 
+[
+"component",
+{
+"libraryName": "element-ui",
+"styleLibraryName": "theme-chalk"
+}
+]
