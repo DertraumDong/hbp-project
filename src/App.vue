@@ -28,7 +28,7 @@ body{
   margin: 0px;
 }
 .app-body{
-  background-color: #f8f9fa!important;
+  background-color: rgb(233, 233, 235)!important;
   min-height: 600px;
 }
 .app-footer{
