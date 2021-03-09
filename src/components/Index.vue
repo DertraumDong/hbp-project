@@ -10,7 +10,7 @@
     </div>
     <el-row>
       <el-col :span="6" v-for="(project, index) in projects" style="margin-bottom: 40px;" v-loading="loading">
-        <router-link class="router-link" :to="project.link">
+        <router-link to="" class="router-link" @click.native="clickProject(project)" >
           <el-card shadow="hover" :body-style="{ padding: '0px 0px 30px 0px' }">
             <img class="card-img"/>
             <div>
@@ -77,11 +77,12 @@ export default {
         console.log(response);
         let data = response.data.data
         pp.projects = data.records;
-        console.log(response.data.data);
         pp.pageNumber.pageNo = data.current;
         pp.pageNumber.pageSize = data.size;
         pp.pageNumber.totalCount = data.total;
         pp.loading=false;
+
+        pp.viewLoad();
       }).catch(err => {
         console.log('err');
         console.log(err);
@@ -94,6 +95,33 @@ export default {
       if(this.pageNumber.pageSize > this.pageNumber.totalCount){
         this.iconFlag = false;
       }
+    },
+    viewLoad(){
+      let $thisP = this;
+      this.$axios.get('/dt/projectView/queryProjectView',
+      ).then((response) => {
+        let data = response.data.data;
+        console.log(data);
+        for(let i =0; i < $thisP.projects.length; i++){
+          let id = $thisP.projects[i].id;
+          let views = data[id];
+          $thisP.projects[i].view = views;
+        }
+      }).catch(err => {
+        console.log('err');
+        console.log(err);
+      })
+    },
+    clickProject(project){
+      let id = project.id;
+      let link = project.link;
+      this.$axios.get('/dt/projectView/visitProject/'+id,
+      ).then((response) => {
+        console.log(response);
+      }).catch(err => {
+        console.log('err',err);
+      })
+      this.$router.push(link);
     }
   }
 }
